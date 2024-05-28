@@ -1,4 +1,4 @@
-import IUser from '@/interfaces/IUser'
+import IUser from '@/interfaces/user/IUser'
 import { get } from '@/providers/api'
 
 export const findUserById = async (

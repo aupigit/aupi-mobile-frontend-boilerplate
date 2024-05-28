@@ -1,12 +1,11 @@
 import { View, Text, Image, Pressable, Linking, Button } from 'react-native'
-import React, { useState } from 'react'
+import React from 'react'
+import { router } from 'expo-router'
 
 const Home = () => {
 
-  const [count, setCounter] = useState(0)
-
   const handleCounter = () => {
-    setCounter(count + 1)
+    router.replace('/login')
   }
 
   return (
@@ -26,14 +25,6 @@ const Home = () => {
 
       <View>
         <Button color={'#5178be'} title='CLIQUE AQUI' onPress={handleCounter}></Button>
-
-        <View>
-          {count > 0 && (
-            <View className=' w-full p-5 justify-center items-center'>
-              <Text className='text-lg'>{count}</Text>
-            </View>
-          )}
-        </View>
       </View>
       
     </View>

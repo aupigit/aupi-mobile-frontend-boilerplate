@@ -2,6 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import { InvalidCredentialsError, UnauthorizedError } from '../errors/webapp'
 import getHeaders from './getHeaders'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { Platform } from 'react-native'
 
 export interface IHttpRequestParams {
   extraHeaders?: any
@@ -30,7 +31,13 @@ const httpRequest = async (
 ): Promise<any> => {
   const headers = await getHeaders(props)
 
-  const endpoint = `${process.env.EXPO_PUBLIC_BASE_API_URL}/${uri}`
+  let endpoint
+
+  if (Platform.OS === 'web') {
+    endpoint = `${process.env.EXPO_PUBLIC_BASE_WEB_API_URL}/${uri}`
+  } else {
+    endpoint = `${process.env.EXPO_PUBLIC_BASE_API_URL}/${uri}`
+  }
 
   const body = props.body ? { data: props.body } : {}
 
