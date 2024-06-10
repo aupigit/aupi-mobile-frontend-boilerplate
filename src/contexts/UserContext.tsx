@@ -1,7 +1,7 @@
-import IUser from '@/interfaces/IUser'
+import IUser from '@/interfaces/user/IUser'
 import {
   findUserById,
-} from '@/services/user'
+} from '@/services/user/user'
 import { router } from 'expo-router'
 import {
   createContext,
@@ -40,7 +40,7 @@ const UserProvider: React.FC<UserContextProps> = ({ children }) => {
         const response = await findUserById(userId, token)
         return response
       } else {
-        // router.replace('/login')
+        router.replace('/login')
         return null
       }
     },
